@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   php_fpm:
-      build: .
+      image: dangvantri113/my-laravel-php-fpm:v.0.1
       container_name: blog_php_fpm
       working_dir: /usr/share/nginx/blog
       networks:
@@ -29,6 +29,14 @@ services:
         - MYSQL_ROOT_PASSWORD=password
         - MYSQL_USER=blog
         - MYSQL_PASSWORD=password
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    networks:
+        - blog
+    ports:
+      - 9000:8080
 networks:
   blog:
     driver: bridge
